@@ -5,11 +5,7 @@ description = "This boilerplate simplifies the deployment of microservices (e.g.
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "docker>=7.1.0",
-    "gcloud>=0.18.3",
     "litestar[standard]>=2.12.1",
-    "pytest>=8.3.3",
-    "ruff>=0.6.9",
     "toml>=0.10.2",
 ]
 
@@ -74,3 +70,9 @@ insecure = false
 [tool.semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "ruff>=0.9.7",
+]
