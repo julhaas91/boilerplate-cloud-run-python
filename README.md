@@ -19,11 +19,12 @@
 
 <details>
 <summary><strong>TL;DR (Too Long; Didn't Read) 😴🥱💤</strong></summary>
-
-Set the necessary environment variables in `config.env` and run the following commands to get started right away:
+First, you need to set up Workload Identity Federation by following <a href="./SETUP_WIF.md">these steps</a>.
+<br><br>
+Next, set the necessary environment variables in `config.env` and run the following commands:
 
 ```bash
-./taskfile.sh setup-gcloud && ./taskfile.sh setup-project && ./taskfile.sh run-application
+./taskfile.sh setup_project && ./taskfile.sh run_application
 ```
 (If you get a _permission denied_ error, run: `chmod +x ./taskfile.sh`)
 
@@ -87,7 +88,7 @@ Get started on building, not configuring! 💡
 To set up your local development environment:
 
 ```bash
-./taskfile.sh setup-project
+./taskfile.sh setup_project
 ```
 
 (If you get a _permission denied_ error, run: `chmod +x ./taskfile.sh`)
@@ -131,18 +132,8 @@ Authenticate your local environment using your user credentials:
 
 ### GitHub Actions Authentication via Workload Identity Federation
 
-Set up the authentication of GitHub Actions via Workload Identity Federation with the following steps:
-1. 🧑‍💼 [Create a `github-automation` service account](https://cloud.google.com/iam/docs/service-accounts-create).
-2. 👑 Assign the [Cloud Run Admin](https://cloud.google.com/iam/docs/understanding-roles#run.admin) role (roles/run.admin) to the service account.
-3. 🔗 Set up [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation):
-   1. 💧 Create a [Workload Identity Pool](https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers#pools).
-   2. 🤝 Create a [Workload Identity Provider](https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers#manage-providers) within that pool.
+Set up the authentication of GitHub Actions via Workload Identity Federation by executing <a href="./SETUP_WIF.md">these steps</a>.
 
-To automate these setup steps, run:
-
-```bash
-./setup_gcp.sh setup
-```
 
 ## Deployment
 
@@ -223,7 +214,7 @@ After successfully deploying to Cloud Run, you can send requests to the service 
 To authenticate your requests, include a [Bearer token](https://cloud.google.com/run/docs/authenticating/service-to-service#acquire-token) in the header of your REST requests. You can create a valid token by running:
 
 ```bash
-./taskfile.sh create-identity-token
+./taskfile.sh create_identity_token
 ```
 
 (Remember to authenticate first using `./taskfile.sh authenticate`)

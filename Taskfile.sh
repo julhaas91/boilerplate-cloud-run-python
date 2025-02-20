@@ -6,11 +6,22 @@ source config.env
 
 # Tasks
 
-run-application() {
+run_application() {
   uv run litestar --app src.main:app run
 }
 
-setup-project() {
+reset_venv_local() {
+  sudo rm -rf .venv
+  echo "... deleted old virtual environment ..."
+  python3 -m venv .venv
+  echo "... created new virtual environment ..."
+  source .venv/bin/activate
+  echo "... activated new virtual environment ..."
+  uv sync --frozen
+  source config.env
+}
+
+setup_project() {
   echo "...installing uv..."
   brew install uv
   echo "...setting up project environment..."
@@ -69,7 +80,7 @@ authenticate() {
   uv run gcloud auth login
 }
 
-create-identity-token() {
+create_identity_token() {
   uv run gcloud auth print-identity-token
 }
 
@@ -83,15 +94,17 @@ help() {
   echo "Usage: ./taskfile.sh [task]"
   echo
   echo "Available tasks:"
-  echo "  run                           Run the application locally."
-  echo "  setup                         Install uv and set up the project environment."
+  echo "  run_application               Run the application locally."
+  echo "  reset_venv_local              Reset the local virtual environment."
+  echo "  setup_project                 Install uv and set up the project environment."
   echo "  install <package>             Add a package to the project dependencies."
   echo "  test                          Run the tests using pytest."
-  echo "  validate                      Perform code linting and formatting using rust."
+  echo "  validate                      Perform code linting and formatting using ruff."
   echo "  deploy                        Deploy application to Google Cloud Run."
+  echo "  release                       Create a new release tag and push it to the repository."
   echo "  authenticate                  Authenticate to Google Cloud."
-  echo "  create-identity-token         Create an identity token for external request authentication."
-  echo "  setup-gcloud                  Set up the Google Cloud settings for Workload Identity Federation."
+  echo "  create_identity_token         Create an identity token for external request authentication."
+  echo "  print_env_variables           Print all environment variables."
   echo
   echo "If no task is provided, the default is to run the application."
 }
@@ -106,4 +119,4 @@ else
 fi
 
 # Run application if no argument is provided
-"${@:-run}"
+"${@:-run-application}"

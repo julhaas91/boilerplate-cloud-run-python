@@ -37,9 +37,10 @@ jobs:
       - name: "🔑 Google Cloud Authentication"
         uses: google-github-actions/auth@v2
         with:
-          create_credentials_file: True
+          project: ${{ env.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
-          service_account: ${{ env.AUTOMATION_SERVICE_ACCOUNT }}
+          create_credentials_file: True
+          
 
       - name: "🚀 Deploy to Google Cloud"
         uses: ./.github/actions/deploy-to-gcloud
