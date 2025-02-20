@@ -1,3 +1,5 @@
+# Set Up Workload Identity Federation for GitHub Actions
+
 When deploying services on the open web, secure authentication is crucial. The simplest method for Google Cloud authentication is using service account key files, but they pose a security risk—keys don’t expire and can be misused if exposed.
 
 To mitigate this, we use [**Workload Identity Federation (WIF)**](https://cloud.google.com/iam/docs/workload-identity-federation), which replaces long-lived keys with short-lived access tokens.
