@@ -63,7 +63,7 @@ jobs:
           env-file: './config.env'
 
       - name: "🔢 Run Semantic Release"
-        uses: python-semantic-release/python-semantic-release@v9.17.0
+        uses: python-semantic-release/python-semantic-release@v9.21.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           git_committer_name: ${{ env.GIT_COMMITTER_NAME }}
