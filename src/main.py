@@ -1,6 +1,7 @@
 import os
 import json
 from litestar import Litestar, Request, get, post
+from common import logger
 
 
 env = os.environ.get("PYTHON_ENV")
@@ -15,6 +16,7 @@ async def process_message(request: Request) -> dict:
 @get("/health")
 async def health_check() -> str:
     """Check service health."""
+    logger.info("Health check route called.")
     return json.dumps({"status": "ok"})
 
 
