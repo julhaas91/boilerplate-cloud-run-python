@@ -1,7 +1,7 @@
 import os
 import json
 from litestar import Litestar, Request, get, post
-from common import logger
+from src.common import logger
 
 
 env = os.environ.get("PYTHON_ENV")
