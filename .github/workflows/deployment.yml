@@ -26,7 +26,7 @@ jobs:
           version: ">= 363.0.0"
         
       - name: "🔄 Checkout Repository"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: "📦 Setup Project Environment"
         uses: ./.github/actions/setup-project-environment
